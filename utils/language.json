@@ -1,0 +1,123 @@
+[
+    {
+      "languageCode": "en",
+      "settings": "Settings",
+      "language": "Language",
+      "rewards": "Rewards"
+    },
+    {
+      "languageCode": "es",
+      "settings": "Configuraciones",
+      "language": "Idioma",
+      "rewards": "Recompensas"
+    },
+    {
+      "languageCode": "fr",
+      "settings": "Paramètres",
+      "language": "Langue",
+      "rewards": "Récompenses"
+    },
+    {
+      "languageCode": "de",
+      "settings": "Einstellungen",
+      "language": "Sprache",
+      "rewards": "Belohnungen"
+    },
+    {
+      "languageCode": "zh",
+      "settings": "设置",
+      "language": "语言",
+      "rewards": "奖励"
+    },
+    {
+      "languageCode": "ja",
+      "settings": "設定",
+      "language": "言語",
+      "rewards": "報酬"
+    },
+    {
+      "languageCode": "hi",
+      "settings": "सेटिंग्स",
+      "language": "भाषा",
+      "rewards": "पुरस्कार"
+    },
+    {
+      "languageCode": "ar",
+      "settings": "الإعدادات",
+      "language": "اللغة",
+      "rewards": "المكافآت"
+    },
+    {
+      "languageCode": "pt",
+      "settings": "Configurações",
+      "language": "Idioma",
+      "rewards": "Recompensas"
+    },
+    {
+      "languageCode": "ru",
+      "settings": "Настройки",
+      "language": "Язык",
+      "rewards": "Награды"
+    },
+    {
+      "languageCode": "it",
+      "settings": "Impostazioni",
+      "language": "Lingua",
+      "rewards": "Ricompense"
+    },
+    {
+      "languageCode": "ko",
+      "settings": "설정",
+      "language": "언어",
+      "rewards": "보상"
+    },
+    {
+      "languageCode": "tr",
+      "settings": "Ayarlar",
+      "language": "Dil",
+      "rewards": "Ödüller"
+    },
+    {
+      "languageCode": "vi",
+      "settings": "Cài đặt",
+      "language": "Ngôn ngữ",
+      "rewards": "Phần thưởng"
+    },
+    {
+      "languageCode": "th",
+      "settings": "การตั้งค่า",
+      "language": "ภาษา",
+      "rewards": "รางวัล"
+    },
+    {
+      "languageCode": "bn",
+      "settings": "সেটিংস",
+      "language": "ভাষা",
+      "rewards": "পুরস্কার"
+    },
+    {
+      "languageCode": "id",
+      "settings": "Pengaturan",
+      "language": "Bahasa",
+      "rewards": "Hadiah"
+    },
+    {
+      "languageCode": "ms",
+      "settings": "Tetapan",
+      "language": "Bahasa",
+      "rewards": "Ganjaran"
+    },
+    {
+      "languageCode": "fa",
+      "settings": "تنظیمات",
+      "language": "زبان",
+      "rewards": "پاداش‌ها"
+    },
+    {
+      "languageCode": "ur",
+      "settings": "ترتیبات",
+      "language": "زبان",
+      "rewards": "انعامات"
+    }
+  ]
+  
