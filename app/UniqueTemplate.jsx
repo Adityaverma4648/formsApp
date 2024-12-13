@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRoute } from "@react-navigation/native";
+import { RouteParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
@@ -20,7 +21,7 @@ import {
 const UniqueTemplate = () => {
   const route = useRoute();
   const [user, setUser] = useState(null);
-  const { templateData } = route?.params || "";
+  const { templateData } = route?.params || { templateData: null };
   const [tab, setTab] = useState(1);
 
   const tabOptions = [
@@ -43,7 +44,7 @@ const UniqueTemplate = () => {
   ];
 
   const questions = [
-    { id: 1,templateId :templateData._id, templateName: templateData.name || templateData.type },
+     
   ];
 
   useEffect(() => {
@@ -53,7 +54,6 @@ const UniqueTemplate = () => {
         if (storedUsername) {
           const username = JSON.parse(storedUsername);
           setUser(username);
-          console.log(username, user);
         } else {
           console.log("No user details found.");
         }
@@ -96,21 +96,25 @@ const UniqueTemplate = () => {
                 // backgroundColor: "green",
               }}
             >
-              <Text>
-                {tab}
-              </Text>
+              <Text>{tab}</Text>
               <View>
-                <Text>
-                {JSON.stringify(templateData)}
-                </Text>
+                <Text>{JSON.stringify(templateData)}</Text>
               </View>
 
               <View>
-                <Text>
-                {JSON.stringify(questions)}
-                </Text>
-              </View>
+                <Text>{JSON.stringify(questions)}</Text>
+              </View> 
+              
+              {tab === 1 && <View className="">
+                  {questions?.map((d,index)=>{
+                    return <View key={index} className="">
+
+                    </View>
+                  })}
+                </View>}
             </ScrollView>
+
+           
           );
         })}
       </View>

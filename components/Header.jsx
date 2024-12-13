@@ -7,11 +7,11 @@ import {
   MagnifyingGlassIcon,
 } from "react-native-heroicons/solid";
 import { Cog8ToothIcon, ShareIcon } from "react-native-heroicons/outline";
-const Header = ({templateName}) => {
+const Header = ({ templateName }) => {
   const route = useRoute();
   const navigation = useNavigation();
   const [text, setText] = useState("");
-  const [rename, setRename] = useState(templateName)
+  const [rename, setRename] = useState(templateName);
 
   const renderHeaderContent = () => (
     <View className="w-full h-[40%] flex flex-row justify-between items-center px-4">
@@ -29,6 +29,10 @@ const Header = ({templateName}) => {
         <GiftIcon color="#FFD700" size={24} />
       </TouchableOpacity>
     </View>
+  );
+
+  const filteredForms = forms.filter((form) =>
+    form.name.toLowerCase().includes(text.toLowerCase())
   );
 
   const renderSearchBar = () => (
@@ -102,31 +106,70 @@ const Header = ({templateName}) => {
             </TouchableOpacity>
             <View className="font-semibold text-xl flex-1 h-full flex flex-row justify-center items-start ps-4">
               <View className="h-full flex justify-center items-center flex-1">
-                <TextInput 
-                 value={rename} 
-                 onChangeText={(text) => setRename(text)} 
-                className="font-semibold text-xl text-black"></TextInput>
+                <TextInput
+                  value={rename}
+                  onChangeText={(text) => setRename(text)}
+                  className="font-semibold text-xl text-black"
+                ></TextInput>
               </View>
 
               <View className="flex flex-row justify-evenly items-center h-full w-1/3">
-              <TouchableOpacity
-              accessibilityLabel="premium"
-              onPress={() => navigation.navigate("premium")}
-            >
-              <GiftIcon color={"#000"} size={24} />
-            </TouchableOpacity>
+                <TouchableOpacity
+                  accessibilityLabel="premium"
+                  onPress={() => navigation.navigate("premium")}
+                >
+                  <GiftIcon color={"#000"} size={24} />
+                </TouchableOpacity>
 
-            <TouchableOpacity
-              accessibilityLabel="premium"
-              onPress={() => navigation.navigate("premium")}
-            >
-              <ShareIcon color={"#000"} size={24} />
-            </TouchableOpacity>
+                <TouchableOpacity
+                  accessibilityLabel="premium"
+                  onPress={() => navigation.navigate("premium")}
+                >
+                  <ShareIcon color={"#000"} size={24} />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
         </View>
       )}
+
+      {/* {route.name === "template/[id]" && (
+        <View className="w-screen top-0 left-0 z-10 bg-white h-[50px] flex flex-row justify-center items-center text-black">
+          <View className="w-full h-full flex flex-row justify-between items-center px-4">
+            <TouchableOpacity
+              accessibilityLabel="index"
+              onPress={() => navigation.navigate("index")}
+            >
+              <ArrowLeftIcon color={"#000"} size={24} />
+            </TouchableOpacity>
+            <View className="font-semibold text-xl flex-1 h-full flex flex-row justify-center items-start ps-4">
+              <View className="h-full flex justify-center items-center flex-1">
+                <TextInput
+                  value={rename}
+                  onChangeText={(text) => setRename(text)}
+                  className="font-semibold text-xl text-black"
+                ></TextInput>
+              </View>
+
+              <View className="flex flex-row justify-evenly items-center h-full w-1/3">
+                <TouchableOpacity
+                  accessibilityLabel="premium"
+                  onPress={() => navigation.navigate("premium")}
+                >
+                  <GiftIcon color={"#000"} size={24} />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  accessibilityLabel="premium"
+                  onPress={() => navigation.navigate("premium")}
+                >
+                  <ShareIcon color={"#000"} size={24} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </View>
+      )} */}
     </>
   );
 };

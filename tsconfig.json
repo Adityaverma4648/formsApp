@@ -14,5 +14,5 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
-  ]
+, "app/index.jsx", "app/login.jsx", "app/template.jsx", "app/UniqueTemplate.jsx", "app/setting.jsx", "app/premium.jsx", "components/Header.jsx"  ]
 }

@@ -19,6 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { launchImageLibrary } from "react-native-image-picker";
 import axios from "axios";
+import { ArrowLeftIcon } from "react-native-heroicons/outline";
 
 const setting = () => {
   const navigation = useNavigation();
@@ -71,7 +72,6 @@ const setting = () => {
         if (storedUsername) {
           const username = JSON.parse(storedUsername);
           setUser(username);
-          console.log(username, user);
         } else {
           console.log("No user details found.");
         }
@@ -84,7 +84,20 @@ const setting = () => {
 
   return (
     <SafeAreaView className="w-screen h-screen flex flex-col justify-start items-center bg-gray-200">
-      <Header />
+      {/* <Header /> */}
+      <View className="w-screen top-0 left-0 z-10 bg-white h-[80px] flex flex-row justify-center items-center text-black">
+          <View className="w-full h-full flex flex-row justify-between items-center px-4">
+            <TouchableOpacity
+              accessibilityLabel="index"
+              onPress={() => navigation.navigate("index")}
+            >
+              <ArrowLeftIcon color={"#000"} size={24} />
+            </TouchableOpacity>
+            <View className="font-semibold text-xl flex-1 h-full flex justify-center items-start ps-4">
+              <Text className="font-semibold text-xl text-black">Settings</Text>
+            </View>
+          </View>
+        </View>
 
       {/* UserINfo */}
       <View className="my-4 w-[90%] h-[20%] flex justify-center items-center">
