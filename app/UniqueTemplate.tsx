@@ -1,5 +1,7 @@
 import Header from "@/components/Header";
-import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRoute } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -7,11 +9,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { PlusCircleIcon } from "react-native-heroicons/outline";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  FilmIcon,
+  PhotoIcon,
+  Squares2X2Icon,
+} from "react-native-heroicons/solid";
 
-const UniqueTemplate = ({ route }) => {
-  const { templateData } = route?.params || {};
+const UniqueTemplate = () => {
+  const route = useRoute();
+  const [user, setUser] = useState(null);
+  const { templateData } = route?.params || "";
   const [tab, setTab] = useState(1);
 
   const tabOptions = [
@@ -33,13 +42,31 @@ const UniqueTemplate = ({ route }) => {
     },
   ];
 
-  // if (!templateData) {
-  //   return <Text>No data passed!</Text>; // Handling the case where no data is passed
-  // }
+  const questions = [
+    { id: 1,templateId :templateData._id, templateName: templateData.name || templateData.type },
+  ];
+
+  useEffect(() => {
+    const getUserDetails = async () => {
+      try {
+        const storedUsername = await AsyncStorage.getItem("userDetails");
+        if (storedUsername) {
+          const username = JSON.parse(storedUsername);
+          setUser(username);
+          console.log(username, user);
+        } else {
+          console.log("No user details found.");
+        }
+      } catch (error) {
+        console.error("Error retrieving user details:", error);
+      }
+    };
+    getUserDetails();
+  }, []);
 
   return (
     <SafeAreaView className="bg-gray-300 h-screen w-screen flex justify-start items-center">
-      <Header />
+      <Header templateName={templateData?.name || templateData.type} />
       <View className="h-[50px] w-full bg-red-400 px-4 flex flex-row justify-center i-center">
         {tabOptions.map((d) => {
           return (
@@ -69,14 +96,45 @@ const UniqueTemplate = ({ route }) => {
                 // backgroundColor: "green",
               }}
             >
-              <Text>{tab}</Text>
+              <Text>
+                {tab}
+              </Text>
+              <View>
+                <Text>
+                {JSON.stringify(templateData)}
+                </Text>
+              </View>
+
+              <View>
+                <Text>
+                {JSON.stringify(questions)}
+                </Text>
+              </View>
             </ScrollView>
           );
         })}
       </View>
 
-      <View className="h-[50px] bg-white">
-          
+      <View className="h-[50px] bg-white flex flex-row justify-center items-center">
+        <TouchableOpacity className="w-1/5 flex justify-center items-center">
+          <PlusCircleIcon color={"#000"} />
+        </TouchableOpacity>
+
+        <TouchableOpacity className="w-1/5 flex justify-center items-center">
+          <ChatBubbleBottomCenterTextIcon color={"#000"} />
+        </TouchableOpacity>
+
+        <TouchableOpacity className="w-1/5 flex justify-center items-center">
+          <PhotoIcon color={"#000"} />
+        </TouchableOpacity>
+
+        <TouchableOpacity className="w-1/5 flex justify-center items-center">
+          <FilmIcon color={"#000"} />
+        </TouchableOpacity>
+
+        <TouchableOpacity className="w-1/5 flex justify-center items-center">
+          <Squares2X2Icon color={"#000"} />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

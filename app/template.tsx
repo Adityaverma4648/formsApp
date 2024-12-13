@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -8,9 +8,11 @@ import {
 } from "react-native";
 import { useNavigationState, useNavigation } from "@react-navigation/native";
 import Header from "@/components/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Template = () => {
   const navigation = useNavigation(); // Hook to access navigation
+    const [user, setUser] = useState(null)
 
   const currentRouteName = useNavigationState((state) => {
     const route = state.routes[state.index];
@@ -52,15 +54,56 @@ const Template = () => {
     },
   ];
 
-  const handleTemplateClick = (templateData) => {
-    // Navigate to UniqueTemplate component, passing templateData as params
+  useEffect(()=>{
+    const getUserDetails = async () => {
+      try {
+        const storedUsername = await AsyncStorage.getItem("userDetails");
+        if (storedUsername) {
+          const username = JSON.parse(storedUsername);
+          setUser(username);
+          console.log(username,user);
+        } else {
+          console.log("No user details found.");
+        }
+      } catch (error) {
+        console.error("Error retrieving user details:", error);
+      }
+    };
+    getUserDetails();
+  },[])
+
+
+  const handleTemplateClick = async(templateData) => {
+    // console.log(templateData,user);
     navigation.navigate("UniqueTemplate", {
-      templateData,
+      templateData
     });
+    // Call function to save data in the database
+  try {
+    const response = await fetch("https://forms-backend-4b66.onrender.com/templates/save-template", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type : templateData.name,
+        user : user
+      }),
+    });
+
+    if (response.ok) {
+      console.log("Template saved successfully!");
+    } else {
+      console.error("Failed to save template:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error while saving template:", error);
+  }
   };
+  
 
   return (
-    <SafeAreaView className="">
+    <SafeAreaView className="w-screen h-screen flex justify-center items-centers">
       <Header />
 
       <ScrollView className="w-screen flex bg-green-200">
@@ -78,7 +121,7 @@ const Template = () => {
                       key={items.id}
                       className="bg-orange-300 w-[48%] h-full mx-1 rounded-lg overflow-hidden"
                       onPress={() =>
-                        handleTemplateClick({ ...d, selectedOption: items })
+                        handleTemplateClick({ ...items})
                       }
                     >
                       <View className="flex-1">

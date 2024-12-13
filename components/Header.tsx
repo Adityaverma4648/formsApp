@@ -7,10 +7,11 @@ import {
   MagnifyingGlassIcon,
 } from "react-native-heroicons/solid";
 import { Cog8ToothIcon, ShareIcon } from "react-native-heroicons/outline";
-const Header = () => {
+const Header = ({templateName}) => {
   const route = useRoute();
   const navigation = useNavigation();
   const [text, setText] = useState("");
+  const [rename, setRename] = useState(templateName)
 
   const renderHeaderContent = () => (
     <View className="w-full h-[40%] flex flex-row justify-between items-center px-4">
@@ -101,7 +102,10 @@ const Header = () => {
             </TouchableOpacity>
             <View className="font-semibold text-xl flex-1 h-full flex flex-row justify-center items-start ps-4">
               <View className="h-full flex justify-center items-center flex-1">
-                <Text className="font-semibold text-xl text-black">Template Name</Text>
+                <TextInput 
+                 value={rename} 
+                 onChangeText={(text) => setRename(text)} 
+                className="font-semibold text-xl text-black"></TextInput>
               </View>
 
               <View className="flex flex-row justify-evenly items-center h-full w-1/3">
